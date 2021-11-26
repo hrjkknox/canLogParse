@@ -22,7 +22,6 @@ def _extractDataFromPacket(packet):
 
 	return dataArray
 
-
 # Turns the packet into a nice dictionary
 def _formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp):
 	outputDict = {}
@@ -79,6 +78,8 @@ def importCanData(file, outputFormat="2dArray"):
 		# Split the packet into its contents
 		packet = rawPacket.split()
 
+		
+
 		# There's always a "logging stopped" line at the end
 		if packet[0] == "Logging":
 			continue
@@ -89,12 +90,12 @@ def importCanData(file, outputFormat="2dArray"):
 		id = packet[1]
 		# The length of the actual data
 		dataLength = int(packet[2])
-		# The actual bytes of data
-		data = _extractDataFromPacket(packet)
 		# The transmit/receive byte
 		tr = packet[-1]
 		# The timestamp of the packet
 		timeStamp = float(packet[-2])
+		# The actual bytes of data
+		data = _extractDataFromPacket(packet)
 
 		# Format the output as requested
 		formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)
