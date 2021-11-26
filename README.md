@@ -33,3 +33,7 @@ This function takes a packet array and returns the data bytes. It does this by r
 ### `_fileToList(file)`
 This takes a file name, and returns its rows in a list.
 
+##TODO
+- Take code out of `__init__.py` and put it into a separate file
+- Update `_extractDataFromPacket` to use the `dataLength` byte.
+
