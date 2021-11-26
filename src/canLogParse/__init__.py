@@ -52,3 +52,48 @@ def _formatPacketTuple(leadingZero, id, dataLength, data, tr, timeStamp):
 
 	return packetTuple
 
+# Formats the packet into a nice format
+def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat="2dArray"):
+	if outputFormat == "dict":
+		# Construct a dictionary with all of the data
+		output = _formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp)
+	elif outputFormat == "2dArray":
+		# Construct an array with all of the data
+		output = _formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp)
+	elif outputFormat == "tupleArray":
+		# Construct a tuple with all of the data
+		output = _formatPacketTuple(leadingZero, id, dataLength, data, tr, timeStamp)
+	
+	return output
+
+def importCanData(file, outputFormat="2dArray"):
+	# Get the raw CAN data and split it
+	rawCanData = _fileToList(file)
+	# The output array
+	output = []
+
+	# Loop through every packet logged
+	for rawPacket in rawCanData:
+		# Split the packet into its contents
+		packet = rawPacket.split()
+
+		# There's always a "logging stopped" line at the end
+		if packet[0] == "Logging":
+			continue
+		
+		# The leading zero at the start of the packet
+		leadingZero = packet[0]
+		# The ID of the packet
+		id = packet[1]
+		# The length of the actual data
+		dataLength = int(packet[2])
+		# The actual bytes of data
+		data = _extractDataFromPacket(packet)
+		# The transmit/receive byte
+		tr = packet[-1]
+		# The timestamp of the packet
+		timeStamp = float(packet[-2])
+
+		# Format the output as requested
+		formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)
+		output.append(formattedPacket)
