@@ -67,18 +67,14 @@ def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat
 	
 	return output
 
-def importCanData(file, outputFormat="2dArray"):
-	# Get the raw CAN data and split it
-	rawCanData = _fileToList(file)
+def importCanData(rawData, outputFormat="2dArray"):
 	# The output array
 	output = []
 
 	# Loop through every packet logged
-	for rawPacket in rawCanData:
+	for rawPacket in rawData:
 		# Split the packet into its contents
 		packet = rawPacket.split()
-
-		
 
 		# There's always a "logging stopped" line at the end
 		if packet[0] == "Logging":
@@ -103,3 +99,7 @@ def importCanData(file, outputFormat="2dArray"):
 
 	return output
 
+def importCanLogFile(file, outputFormat="2dArray"):
+	rawCanData = _fileToList(file)
+	output = importCanData(rawCanData, outputFormat=outputFormat)
+	return output

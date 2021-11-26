@@ -2,8 +2,8 @@
 This is a library for importing and parsing data from Kvaser CAN files when you don't have a DBC file. The code should be fairly simple and self-documenting, and all other information should be contained within this file.
 
 ## Functions
-### `importCanData(file, outputFormat="2dArray")`
-Imports data from a log file and returns it as an array of records. The possible formats are `2dArray` (the default), `tupleArray`, and `dict`. This is the only function you should be using from this library, and documentation on the others is only so that you have an idea of how it works.
+### `importCanData(rawData, outputFormat="2dArray")`
+Imports data from an array of raw packets and returns it as an array of records. The possible formats are `2dArray` (the default), `tupleArray`, and `dict`. This is one of the only two functions you should be using from this library, and documentation on the others is only so that you have an idea of how it works.
 ####  Output data
 The data is structured as follows:
 `leadingZero`: The zero at the start of the packet.
@@ -12,6 +12,9 @@ The data is structured as follows:
 `data`: The data bytes in an array.
 `T/R`: It is assumed that this is transmit/receive, but so far it has only been observed as `R`.
 `timeStamp`: The packet timestamp.
+
+### `importCanLogFile(file, outputFormat="2dArray")`
+The same as the above function, but taking the data from a file.
 
 #### Output formats
 There are three possible output formats, `2dArray` (the default), `tupleArray`, and `dict`.
