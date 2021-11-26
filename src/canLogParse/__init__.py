@@ -47,7 +47,7 @@ def _formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp):
 
 # Turns the data into a nice tuple
 def _formatPacketTuple(leadingZero, id, dataLength, data, tr, timeStamp):
-	packetArray = formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp)
+	packetArray = _formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp)
 	packetTuple = tuple(packetArray)
 
 	return packetTuple
