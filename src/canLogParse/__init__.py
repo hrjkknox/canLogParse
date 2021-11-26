@@ -1,4 +1,4 @@
-def fileToList(file):
+def _fileToList(file):
 	with open(file) as readFile:
 		lines = readFile.readlines()
 	return lines
@@ -22,7 +22,7 @@ def _extractDataFromPacket(packet):
 	return dataArray
 
 # Turns the packet into a nice dictionary
-def formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp):
+def _formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp):
 	outputDict = {}
 	outputDict["leadingZero"] = leadingZero
 	outputDict["id"] = id
@@ -34,7 +34,7 @@ def formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp):
 	return outputDict
 
 # Turns the data into a nice list
-def formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp):
+def _formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp):
 	outputArr = []
 	outputArr.append(leadingZero)
 	outputArr.append(id)
@@ -46,7 +46,7 @@ def formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp):
 	return outputArr
 
 # Turns the data into a nice tuple
-def formatPacketTuple(leadingZero, id, dataLength, data, tr, timeStamp):
+def _formatPacketTuple(leadingZero, id, dataLength, data, tr, timeStamp):
 	packetArray = formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp)
 	packetTuple = tuple(packetArray)
 
