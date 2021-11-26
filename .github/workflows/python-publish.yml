@@ -14,7 +14,8 @@ on:
 
 jobs:
   deploy:
-
+    
+    environment: deployment
     runs-on: ubuntu-latest
 
     steps:
