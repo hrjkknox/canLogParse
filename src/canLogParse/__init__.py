@@ -97,3 +97,5 @@ def importCanData(file, outputFormat="2dArray"):
 		# Format the output as requested
 		formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)
 		output.append(formattedPacket)
+
+	return output
