@@ -8,18 +8,20 @@ def _extractDataFromPacket(packet):
 	dataLength = int(packet[2])
 	# Remove all non-data bytes
 	# I know this is janky, but I'm doing this quickly
-	packet.pop(0)
-	packet.pop(0)
-	packet.pop(0)
-	packet.pop(-1)
-	packet.pop(-1)
+	npacket = packet
+	npacket.pop(0)
+	npacket.pop(0)
+	npacket.pop(0)
+	npacket.pop(-1)
+	npacket.pop(-1)
 	
 	# Convert the array of strings to an array of bytes
 	dataArray = []
-	for i in packet:
+	for i in npacket:
 		dataArray.append(bytes.fromhex(i))
 
 	return dataArray
+
 
 # Turns the packet into a nice dictionary
 def _formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp):
@@ -99,3 +101,4 @@ def importCanData(file, outputFormat="2dArray"):
 		output.append(formattedPacket)
 
 	return output
+
