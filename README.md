@@ -22,6 +22,9 @@ There are three possible output formats, `2dArray` (the default), `tupleArray`, 
 `tupleArray`: The same as `2dArray`, but with tuples instead of inner arrays.
 `dict`: An array of dictionaries, with the key names the same as stated above.
 
+### `findUniqueIDs(packets)`
+Takes a 2D array (or array of tuples) of packets, returns a list of all unique packet IDs.
+
 ### `_formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat="2dArray")`
 This function takes the given data and formats it in the specified way.
 

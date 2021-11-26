@@ -103,3 +103,14 @@ def importCanLogFile(file, outputFormat="2dArray"):
 	rawCanData = _fileToList(file)
 	output = importCanData(rawCanData, outputFormat=outputFormat)
 	return output
+
+# Given a 2D array of packets, finds all unique IDs
+def findUniqueIDs(packets):
+	allIDs = []
+	# Loop through all of the packets
+	for packet in packets:
+		# Append the ID to allIDs
+		allIDs.append(packet[1])
+	
+	uniqueIDs = set(allIDs)
+	return list(uniqueIDs)
