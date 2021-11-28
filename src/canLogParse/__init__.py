@@ -67,6 +67,46 @@ def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat
 	
 	return output
 
+def parsePacket(rawPacket, outputFormat="2dArray"):
+	packet = rawPacket.split()
+
+	# There's always a "logging stopped" line at the end
+	if packet[0] == "Logging":
+		return None
+
+	# The leading zero at the start of the packet
+	leadingZero = packet[0]
+	# The ID of the packet
+	id = packet[1]
+	# The length of the actual data
+	dataLength = int(packet[2])
+	# The transmit/receive byte
+	tr = packet[-1]
+	# The timestamp of the packet
+	timeStamp = float(packet[-2])
+	# The actual bytes of data
+	data = _extractDataFromPacket(packet)
+
+	# Format the output as requested
+	formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)# The leading zero at the start of the packet
+	leadingZero = packet[0]
+	# The ID of the packet
+	id = packet[1]
+	# The length of the actual data
+	dataLength = int(packet[2])
+	# The transmit/receive byte
+	tr = packet[-1]
+	# The timestamp of the packet
+	timeStamp = float(packet[-2])
+	# The actual bytes of data
+	data = _extractDataFromPacket(packet)
+
+	# Format the output as requested
+	formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)
+	
+	return formattedPacket
+
+
 def importCanData(rawData, outputFormat="2dArray"):
 	# The output array
 	output = []
