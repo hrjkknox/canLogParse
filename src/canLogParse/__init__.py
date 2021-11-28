@@ -61,7 +61,7 @@ def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat
 	elif outputFormat == "2dArray":
 		# Construct an array with all of the data
 		output = _formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp)
-	elif outputFormat == "tupleArray":
+	elif outputFormat == "tuple":
 		# Construct a tuple with all of the data
 		output = _formatPacketTuple(leadingZero, id, dataLength, data, tr, timeStamp)
 	
