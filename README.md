@@ -1,7 +1,7 @@
 
 # canLogParse
 
-This is a library for importing and parsing data from Kvaser CAN files when you don't have a DBC file. The code should be fairly simple and self-documenting, and all other information should be contained within this file. The current pre-release is `v0.0.2`, and you can install it on pip via `pip3 install canLogParse`.
+This is a library for importing and parsing data from Kvaser CAN files when you don't have a DBC file. The code should be fairly simple and self-documenting, and all other information should be contained within this file. You can install the library on pip via `pip3 install canLogParse`.
 
   
 
