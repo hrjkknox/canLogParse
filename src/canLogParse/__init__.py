@@ -119,6 +119,7 @@ def parseCanData(rawData, outputFormat="2dArray"):
 
 	return output
 
+# Take a CAN log file and format it into something more useful
 def importCanLogFile(file, outputFormat="2dArray"):
 	rawCanData = _fileToList(file)
 	output = parseCanData(rawCanData, outputFormat=outputFormat)
