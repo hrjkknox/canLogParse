@@ -67,6 +67,7 @@ def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat
 	
 	return output
 
+# Take a raw packet line and format it into something more useful
 def parsePacket(rawPacket, outputFormat="2dArray"):
 	packet = rawPacket.split()
 
@@ -106,42 +107,21 @@ def parsePacket(rawPacket, outputFormat="2dArray"):
 	
 	return formattedPacket
 
-
-def importCanData(rawData, outputFormat="2dArray"):
+# Take the contents of a CAN log and format it into something more useful
+def parseCanData(rawData, outputFormat="2dArray"):
 	# The output array
 	output = []
 
 	# Loop through every packet logged
 	for rawPacket in rawData:
-		# Split the packet into its contents
-		packet = rawPacket.split()
-
-		# There's always a "logging stopped" line at the end
-		if packet[0] == "Logging":
-			continue
-		
-		# The leading zero at the start of the packet
-		leadingZero = packet[0]
-		# The ID of the packet
-		id = packet[1]
-		# The length of the actual data
-		dataLength = int(packet[2])
-		# The transmit/receive byte
-		tr = packet[-1]
-		# The timestamp of the packet
-		timeStamp = float(packet[-2])
-		# The actual bytes of data
-		data = _extractDataFromPacket(packet)
-
-		# Format the output as requested
-		formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)
+		formattedPacket = parsePacket(rawPacket, outputFormat=outputFormat)
 		output.append(formattedPacket)
 
 	return output
 
 def importCanLogFile(file, outputFormat="2dArray"):
 	rawCanData = _fileToList(file)
-	output = importCanData(rawCanData, outputFormat=outputFormat)
+	output = parseCanData(rawCanData, outputFormat=outputFormat)
 	return output
 
 # Given a 2D array of packets, finds all unique IDs
