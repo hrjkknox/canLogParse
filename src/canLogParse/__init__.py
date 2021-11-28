@@ -58,7 +58,7 @@ def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat
 	if outputFormat == "dict":
 		# Construct a dictionary with all of the data
 		output = _formatPacketDict(leadingZero, id, dataLength, data, tr, timeStamp)
-	elif outputFormat == "2dArray":
+	elif outputFormat == "array":
 		# Construct an array with all of the data
 		output = _formatPacketList(leadingZero, id, dataLength, data, tr, timeStamp)
 	elif outputFormat == "tuple":
@@ -68,7 +68,7 @@ def _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat
 	return output
 
 # Take a raw packet line and format it into something more useful
-def parsePacket(rawPacket, outputFormat="2dArray"):
+def parsePacket(rawPacket, outputFormat="array"):
 	packet = rawPacket.split()
 
 	# There's always a "logging stopped" line at the end
@@ -88,7 +88,6 @@ def parsePacket(rawPacket, outputFormat="2dArray"):
 	# The actual bytes of data
 	data = _extractDataFromPacket(packet)
 
-	# Format the output as requested
 	formattedPacket = _formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat=outputFormat)# The leading zero at the start of the packet
 	leadingZero = packet[0]
 	# The ID of the packet
@@ -108,7 +107,7 @@ def parsePacket(rawPacket, outputFormat="2dArray"):
 	return formattedPacket
 
 # Take the contents of a CAN log and format it into something more useful
-def parseCanData(rawData, outputFormat="2dArray"):
+def parseCanData(rawData, outputFormat="array"):
 	# The output array
 	output = []
 
@@ -120,7 +119,7 @@ def parseCanData(rawData, outputFormat="2dArray"):
 	return output
 
 # Take a CAN log file and format it into something more useful
-def importCanLogFile(file, outputFormat="2dArray"):
+def importCanLogFile(file, outputFormat="array"):
 	rawCanData = _fileToList(file)
 	output = parseCanData(rawCanData, outputFormat=outputFormat)
 	return output
