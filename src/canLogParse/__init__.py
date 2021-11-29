@@ -100,6 +100,8 @@ def parseCanData(rawData, outputFormat="array"):
 	# Loop through every packet logged
 	for rawPacket in rawData:
 		formattedPacket = parsePacket(rawPacket, outputFormat=outputFormat)
+		if formattedPacket == None:
+			return output
 		output.append(formattedPacket)
 
 	return output
