@@ -1,3 +1,5 @@
+import csv
+
 def _fileToList(file):
 	with open(file) as readFile:
 		lines = readFile.readlines()
@@ -76,7 +78,7 @@ def parsePacket(rawPacket, outputFormat="array"):
 		return None
 
 	# The leading zero at the start of the packet
-	leadingZero = packet[0]
+	leadingZero = int(packet[0])
 	# The ID of the packet
 	id = packet[1]
 	# The length of the actual data
@@ -122,3 +124,11 @@ def findUniqueIDs(packets):
 	
 	uniqueIDs = set(allIDs)
 	return list(uniqueIDs)
+
+# Export a log in 2D array format to a csv file
+def exportLogToCSV(log, filename):
+	with open(filename, "w") as csvfile:
+		logWriter = csv.writer(csvfile)
+		for i in log:
+			logWriter.writerow(i)
+
