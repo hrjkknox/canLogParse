@@ -39,6 +39,10 @@ The same as `parseCanData`, but taking the data from a file.
 
 Takes a 2D array (or array of tuples) of packets, returns a list of all unique packet IDs.
 
+### `exportLogToCSV(log, filename)`
+
+Takes a 2D array of packets and writes the data in CSV format to the specified file.
+
 ### `_formatPacket(leadingZero, id, dataLength, data, tr, timeStamp, outputFormat="2dArray")`
 
 This function takes the given data and formats it in the specified way.
