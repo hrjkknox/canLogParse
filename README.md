@@ -20,7 +20,7 @@ The data is structured as follows:
 
 `dataLength`: The number of data bytes.
 
-`data`: The data bytes in an array.
+`data`: The data bytes in an array of strings.
 
 `T/R`: It is assumed that this is transmit/receive, but so far it has only been observed as `R`.
 
@@ -53,7 +53,7 @@ These functions take in the packet data and format it into either a list, a dict
 
 ### `_extractDataFromPacket(packet)`
 
-This function takes a packet array and returns the data bytes. It does this by removing all known non-data bytes, which is a terrible way to do it. This function should be updated to extract it using the included `dataLength` byte.
+This function takes a packet array and returns the data bytes as an array of strings. It does this by removing all known non-data bytes, which is a terrible way to do it. This function should be updated to extract it using the included `dataLength` byte.
 
 ### `_fileToList(file)`
 
