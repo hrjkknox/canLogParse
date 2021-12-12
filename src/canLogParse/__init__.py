@@ -20,7 +20,7 @@ def _extractDataFromPacket(packet):
 	# Convert the array of strings to an array of bytes
 	dataArray = []
 	for i in npacket:
-		dataArray.append(bytes.fromhex(i))
+		dataArray.append(str(i))
 
 	return dataArray
 
