@@ -26,7 +26,7 @@ The data is structured as follows:
 
 `timeStamp`: The packet timestamp.  
 
-In `array` and `tuple` formats, the data is in the order above. In `dict	` format, the keys are as stated above and 
+In `array` and `tuple` formats, the data is in the order above. In `dict` format, the keys are as stated above and 
 
 ### `parseCanData(rawData, outputFormat="array")`
 Parses an array of CAN packets in the same way as `parseCanPacket`. Formats are the same as `parseCanPacket`, but put together in an array.
